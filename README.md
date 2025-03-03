@@ -38,3 +38,7 @@ C2 fingerprinting — это процесс **идентификации и ра
 | **Supershell Botnet** | `icon_hash="-1010228102"`<br>`title="Supershell"` |
 | **DC RAT**          | `cert.issuer.cn="DcRat Server"` |
 | **Metasploit C2**   | `http.favicon.hash:-127886975` |
+
+### Полезные репозитории
+
+[RATandC2](https://github.com/RATandC2) - коллекция утилит для удаленного доступа и форки C2, полезно для изучения исходного кода и поиска оригинальных имплантов.
