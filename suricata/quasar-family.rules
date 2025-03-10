@@ -1,0 +1,15 @@
+# Quasar RAT family detection rules, inspired by https://github.com/axmahr/QuasarRAT-Family-Detection
+
+alert tls any any -> any any (msg:"QuasarRAT Self-Signed Certificate Detected"; sid:200001; rev:1; tls.cert_subject; content:"Quasar Server CA"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"QuasarRAT JA3 Fingerprint Detected"; sid:200002; rev:1; ja3.hash; content:"43016d7f7f9336b17c884650d0d2545d"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"QuasarRAT JA3S Fingerprint Detected"; sid:200003; rev:1; ja3s.hash; content:"ae4edc6faf64d08308082ad26be60767"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"DcRAT Self-Signed Certificate Detected"; sid:200004; rev:1; tls.cert_issuer; content:"DcRat Server"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"AsyncRAT Self-Signed Certificate Detected"; sid:200005; rev:1; tls.cert_issuer; content:"AsyncRAT Server"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"AsyncRAT JA3S Fingerprint Detected"; sid:200006; rev:1; ja3s.hash; content:"b74704234e6128f33bff9865696e31b3"; classtype:trojan-activity;)
+
+alert tls any any -> any any (msg:"VenomRAT Self-Signed Certificate Detected"; sid:200007; rev:1; tls.cert_issuer; content:"VenomRAT Server"; classtype:trojan-activity;)
