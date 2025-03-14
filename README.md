@@ -44,3 +44,8 @@ C2 fingerprinting — это процесс **идентификации и ра
 [RATandC2](https://github.com/RATandC2) - коллекция утилит для удаленного доступа и форки C2, полезно для изучения исходного кода и поиска оригинальных имплантов.
 
 [awesome-rat](https://github.com/alphaSeclab/awesome-rat) - репозиторий с ссылками на исследования RAT и исходным кодом.
+
+### Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=s0ld13rr/TI&type=Date)](https://www.star-history.com/#s0ld13rr/TI&Date)
+
