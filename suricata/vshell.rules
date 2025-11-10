@@ -1,0 +1,132 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Windows amd64)"; flow:to_server,established; content:"w64 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Windows; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000000; rev:1;
+metadata:affected_product Windows_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Windows i386)"; flow:to_server,established; content:"w32 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Windows; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000001; rev:1;
+metadata:affected_product Windows_32_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"[NVISO] VShell beacon payload
+response (Windows)"; flow:to_client,established; flowbits:isset,NVISO.VShell.Windows;
+content:"|d4 c3|"; offset:0; depth:2; content:"|b8 cd f1 f0 ea b9 e9 eb f6 fe eb f8 f4
+b9 fa f8 f7 f7 f6 ed b9 fb fc b9 eb ec f7 b9 f0 f7 b9 dd d6 ca b9 f4 f6 fd fc b7|";
+fast_pattern; offset:77; depth:40; flowbits:unset,NVISO.VShell.Windows;
+reference:url,www.nviso.eu/blog/nviso-analyzes-vshell-post-exploitation-tool;
+classtype:shellcode-detect; sid:1000002; rev:1; metadata:affected_product
+Windows_32_64_Bit, attack_target Client_and_Server, created_at 2025_08_26, deployment
+Perimeter, malware_family VShell, signature_severity High, confidence High, tag VShell,
+tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011, mitre_tactic_name
+Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Linux amd64)"; flow:to_server,established; content:"l64 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Linux; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000003; rev:1;
+metadata:affected_product Linux_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Linux i386)"; flow:to_server,established; content:"l32 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Linux; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000004; rev:1;
+metadata:affected_product Linux_32_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Linux arm64)"; flow:to_server,established; content:"a64 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Linux; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000005; rev:1;
+metadata:affected_product Linux_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Linux arm)"; flow:to_server,established; content:"a32 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Linux; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000006; rev:1;
+metadata:affected_product Linux_32_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"[NVISO] VShell beacon payload
+response (Linux)"; flow:to_client,established; flowbits:isset,NVISO.VShell.Linux;
+content:"|e6 dc d5 df|"; fast_pattern; offset:0; depth:4;
+flowbits:unset,NVISO.VShell.Linux; reference:url,www.nviso.eu/blog/nviso-analyzesvshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000007; rev:1;
+metadata:affected_product Linux_32_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity High,
+confidence High, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Darwin amd64)"; flow:to_server,established; content:"d64 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Darwin; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000008; rev:1;
+metadata:affected_product Darwin_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] Potential VShell beacon
+payload request (Darwin arm64)"; flow:to_server,established; content:"m64 ";
+fast_pattern; offset:0; depth:6; stream_size:client,<=,45;
+flowbits:set,NVISO.VShell.Darwin; noalert; reference:url,www.nviso.eu/blog/nvisoanalyzes-vshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000009; rev:1;
+metadata:affected_product Darwin_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity Low,
+confidence Low, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"[NVISO] VShell beacon payload
+response (Darwin)"; flow:to_client,established; flowbits:isset,NVISO.VShell.Darwin;
+content:"|56 63 74 67|"; fast_pattern; offset:0; depth:4;
+flowbits:unset,NVISO.VShell.Darwin; reference:url,www.nviso.eu/blog/nviso-analyzesvshell-post-exploitation-tool; classtype:shellcode-detect; sid:1000010; rev:1;
+metadata:affected_product Darwin_64_Bit, attack_target Client_and_Server, created_at
+2025_08_26, deployment Perimeter, malware_family VShell, signature_severity High,
+confidence High, tag VShell, tag RAT, updated_at 2025_08_26, mitre_tactic_id TA0011,
+mitre_tactic_name Command_And_Control, mitre_technique_id T1105, mitre_technique_name
+Ingress_Tool_Transfer;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"[NVISO] VShell beacon client
+handshake"; flow:to_server,established; content:"|25 00 00 00|"; fast_pattern; offset:0;
+depth:4; byte_test:1,^,0x80,0x4; content:"|25 00 00 00|"; offset:0x29; depth:4;
+byte_test:1,^,0x80,0x2d; content:"|3c 00 00 00|"; offset:0x52; depth:4;
+byte_test:1,^,0x80,0x56; content:"|20 00 00 00|"; offset:0x92; depth:4;
+byte_test:1,^,0x80,0x96; reference:url,www.nviso.eu/blog/nviso-analyzes-vshell-postexploitation-tool; classtype:command-and-control; sid:1000011; rev:1;
+metadata:attack_target Client_and_Server, created_at 2025_08_26, deployment Perimeter,
+malware_family VShell, signature_severity Critical, confidence Medium, tag VShell, tag
+RAT, updated_at 2025_08_26, mitre_tactic_id TA0011, mitre_tactic_name
+Command_And_Control, mitre_technique_id T1573, mitre_technique_name Encrypted_Channel;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"[NVISO] VShell beacon server
+handshake"; flow:to_client,established; content:"|3c 00 00 00|"; fast_pattern; offset:0;
+depth:4; byte_test:1,&,0x80,0x4; content:"|20 00 00 00|"; offset:0x40; depth:4;
+byte_test:1,&,0x80,0x44; reference:url,www.nviso.eu/blog/nviso-analyzes-vshell-postexploitation-tool; classtype:command-and-control; sid:1000012; rev:1;
+metadata:attack_target Client_and_Server, created_at 2025_08_26, deployment Perimeter,
+malware_family VShell, signature_severity Critical, confidence Medium, tag VShell, tag
+RAT, updated_at 2025_08_26, mitre_tactic_id TA0011, mitre_tactic_name
+Command_And_Control, mitre_technique_id T1573, mitre_technique_name Encrypted_Channel;)
